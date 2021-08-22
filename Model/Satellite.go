@@ -1,7 +1,7 @@
 package Model
 
 type Satellite struct {
-	Name     string   `json:"Name,omitempty"`
-	Distance float64  `json:"Distance,omitempty"`
-	Message  []string `json:"Message,omitempty"`
+	Name     string   `json:"name,omitempty"`
+	Distance float32  `json:"distance,omitempty"`
+	Message  []string `json:"message,omitempty"`
 }
