@@ -1,0 +1,77 @@
+/*Mensajes sin deelay*/ok
+{
+	"satellites": [
+		{
+			"Name":     "Kenobi",
+			"Distance": 100,
+			"Message":  ["este", "", "", "mensaje",""]
+
+		},
+		{
+			"Name":     "skywalker",
+			"Distance": 115.5,
+			"Message":  ["", "es", "", "", "secreto"]
+
+		},
+		
+				{
+			"Name":     "sato",
+			"Distance": 142.7,
+			"Message":  ["este", "", "un", "", ""]
+
+		}
+		
+	]
+}
+/*Mensajes vacios*/fail
+
+{
+	"satellites": [
+		{
+			"Name":     "Kenobi",
+			"Distance": 100,
+			"Message":  []
+
+		},
+		{
+			"Name":     "skywalker",
+			"Distance": 115.5,
+			"Message":  []
+
+		},
+		
+				{
+			"Name":     "sato",
+			"Distance": 142.7,
+			"Message":  []
+
+		}
+		
+	]
+}
+
+/*Uno de los mensajes tiene un tamaño menor a los otros*/fail
+{
+	"satellites": [
+		{
+			"Name":     "Kenobi",
+			"Distance": 100,
+			"Message":  ["este", "", "", "mensaje",""]
+
+		},
+		{
+			"Name":     "skywalker",
+			"Distance": 115.5,
+			"Message":  ["", "es", "", ""]
+
+		},
+		
+				{
+			"Name":     "sato",
+			"Distance": 142.7,
+			"Message":  ["este", "", "un", "", ""]
+
+		}
+		
+	]
+}

@@ -1,4 +1,4 @@
-package Service
+package Location
 
 import (
 	"errors"
@@ -11,22 +11,19 @@ func GetLocation(mapSatellites map[string][]Model.Satellite) (location Model.Loc
 
 	var satellites []Model.Satellite
 
-	/*Creo el store de location desde aca porue locoy a necesitar*/
-
-	locationStore := Store.NewLocationsStore()
-
 	/*recoro el map que tiene una sola key y adentro de esa key estan los satelites*/
-
 	for _, v := range mapSatellites {
 		satellites = v
 	}
+
+	/*Creo el store de location desde aca porue locoy a necesitar*/
+	locationStore := Store.NewLocationsStore()
 
 	if len(satellites) < 3 {
 		return location, errors.New("Incorrect number of satellites.")
 	}
 
 	//Voy desarmando los datos de cada satelite
-
 	s1 := satellites[0]
 	r1 := s1.Distance
 	//Lo declaro asi porque del otro lado tambien me devuelve error

@@ -6,11 +6,15 @@ import (
 	"io/ioutil"
 	"net/http"
 	"quasar/Model"
-	"quasar/Service"
+
+	"quasar/Service/Location"
+	"quasar/Service/Message"
+
 	"quasar/View"
 )
 
 func topSecret(w http.ResponseWriter, r *http.Request) {
+
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
@@ -39,12 +43,22 @@ func topSecret(w http.ResponseWriter, r *http.Request) {
 
 	/*Aca voy a ir a los dos metodos propuestos en el pdf*/
 
-	/*GetLocation recibe las distancias en realidad. (deberia iterar el request y sacar las distancias solamente. por ahora le envio el request entero)*/
-	response, err := Service.GetLocation(satellites)
+	position, err := Location.GetLocation(satellites)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
 	}
+	message, err := Message.GetMessage(satellites)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+	}
+
+	var messageAndLocationResponse View.MessagePositionResponse
+	messageAndLocationResponse.Message = message
+	messageAndLocationResponse.Position = position
+
+	response := messageAndLocationResponse
 
 	jsonBytes, err := json.Marshal(response)
 	if err != nil {

@@ -1,8 +1,6 @@
 package View
 
-import (
-	"quasar/Model"
-)
+import "quasar/Model"
 
 type MessagePositionResponse struct {
 	Position Model.Location `json:"position,omitempty"`
