@@ -2,6 +2,7 @@ package Service
 
 import (
 	"errors"
+	"math"
 	"quasar/Model"
 	"quasar/Store"
 )
@@ -45,19 +46,38 @@ func GetLocation(mapSatellites map[string][]Model.Satellite) (location Model.Loc
 	x3 := location3.X
 	y3 := location3.Y
 
-	A := 2*x2 - 2*x1
-	B := 2*y2 - 2*y1
-	C := r1*r1 - r2*r2 - x1*x1 + x2*x2 - y1*y1 + y2*y2
-	D := 2*x3 - 2*x2
-	E := 2*y3 - 2*y2
-	F := r2*r2 - r3*r3 - x2*x2 + x3*x3 - y2*y2 + y3*y3
-
-	x := (C*E - F*B) / (E*A - B*D)
-	y := (C*D - A*F) / (B*D - A*E)
+	A := calculateDifference(x2, x1)
+	B := calculateDifference(y2, y1)
+	C := calculateMatrix(r1, r2, x1, x2, y1, y2)
+	//C := r1*r1 - r2*r2 - x1*x1 + x2*x2 - y1*y1 + y2*y2
+	D := calculateDifference(x3, x2)
+	E := calculateDifference(y3, y2)
+	F := calculateMatrix(r2, r3, x2, x3, y2, y3)
+	//F := r2*r2 - r3*r3 - x2*x2 + x3*x3 - y2*y2 + y3*y3
+	x := calculateAxisPoint(C, E, F, B, E, A, B, D)
+	//x := (C*E - F*B) / (E*A - B*D)
+	y := calculateAxisPoint(C, D, A, F, B, D, A, E)
+	//y := (C*D - A*F) / (B*D - A*E)
 
 	location.X = x
 	location.Y = y
 
 	return location, nil
 
+}
+
+/*queda tratar el tema de los numeros muy grandes libreria: https://github.com/shopspring/decimal*/
+func calculateDifference(a float32, b float32) float32 {
+	return 2*a - 2*b
+}
+
+func calculateMatrix(a float32, b float32, c float32, d float32, e float32, f float32) float32 {
+	return a*a - b*b - c*c + d*d - e*e + f*f
+}
+
+func calculateAxisPoint(v1 float32, v2 float32, v3 float32, v4 float32, v5 float32, v6 float32, v7 float32, v8 float32) float32 {
+	value := (v1*v2 - v3*v4) / (v5*v6 - v7*v8)
+	valueCast := float64(value)
+	valueRound := math.Round(valueCast*100) / 100
+	return float32(valueRound)
 }
