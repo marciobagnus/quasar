@@ -27,19 +27,19 @@ func GetLocation(mapSatellites map[string][]Model.Satellite) (location Model.Loc
 	s1 := satellites[0]
 	r1 := s1.Distance
 	//Lo declaro asi porque del otro lado tambien me devuelve error
-	location1, err := locationStore.FetchLocationByName(s1.Name)
+	location1, err := locationStore.FetchLocationBySatelliteName(s1.Name)
 	x1 := location1.X
 	y1 := location1.Y
 
 	s2 := satellites[1]
 	r2 := s2.Distance
-	location2, err := locationStore.FetchLocationByName(s2.Name)
+	location2, err := locationStore.FetchLocationBySatelliteName(s2.Name)
 	x2 := location2.X
 	y2 := location2.Y
 
 	s3 := satellites[2]
 	r3 := s3.Distance
-	location3, err := locationStore.FetchLocationByName(s3.Name)
+	location3, err := locationStore.FetchLocationBySatelliteName(s3.Name)
 	x3 := location3.X
 	y3 := location3.Y
 

@@ -38,14 +38,14 @@ func NewLocationsStore() *LocationsStore {
 }
 
 //SaveLocations guarda locations
-func (l *LocationsStore) SaveLocations(locations map[string]Model.Location) {
+/*func (l *LocationsStore) SaveLocations(locations map[string]Model.Location) {
 
 	l.Lock()
 	l.store = locations
 	defer l.Unlock()
-}
+}*/
 
-func (l *LocationsStore) FetchLocationByName(name string) (location Model.Location, err error) {
+func (l *LocationsStore) FetchLocationBySatelliteName(name string) (location Model.Location, err error) {
 
 	l.Lock()
 
@@ -54,11 +54,5 @@ func (l *LocationsStore) FetchLocationByName(name string) (location Model.Locati
 		l.Unlock()
 		return val, nil
 	}
-	//otra forma de buscar
-	/*i := 0
-	for _, coaster := range h.store {
-		coasters[i] = coaster
-		i++
-	}*/
-	return location, errors.New("The Satelite: " + name + " doesn't exist")
+	return location, errors.New("The location of Satelite: " + name + " doesn't exist")
 }

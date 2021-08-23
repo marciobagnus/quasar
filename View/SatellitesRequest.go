@@ -11,10 +11,10 @@ type SatellitesRequest struct {
 
 /*hacerle gets y sets*/
 
-func (s *SatellitesRequest) SetSatellites(satellites map[string][]Model.Satellite) {
+func (s *SatellitesRequest) SetSatellitesRequest(satellites map[string][]Model.Satellite) {
 	s.Satellites = satellites
 }
 
-func (s SatellitesRequest) GetSatellites() map[string][]Model.Satellite {
+func (s SatellitesRequest) GetSatellitesRequest() map[string][]Model.Satellite {
 	return s.Satellites
 }
