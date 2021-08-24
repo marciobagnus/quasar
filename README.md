@@ -1,18 +1,21 @@
 # MeLi Challenge 💪 Operación Fuego de Quasar
 
-_Es un proyecto creado a partir del challenge que me propuso Mercado Libre para mi postulación laboral. Las instrucciones completas se encuentran en [Quasar]()_
+_Es un proyecto creado a partir del challenge que me propuso Mercado Libre para mi postulación laboral. Las instrucciones completas se encuentran en [Quasar](https://github.com/marciobagnus/quasar/blob/main/docs/Operacion_Quasar.pdf)_
 
 ## Comenzando 🚀
 
-_Este diagrama muestra de manera general cómo interactúan los paquetes del proyecto.
+_
+Este diagrama muestra de manera general cómo interactúan los paquetes del proyecto.
+
 **Store:** se utiliza para guardar los datos en memoria. Los stores son inicializados con los datos de los tres satélites conocidos.
-**View:** representa la estructura de los request y los response  
+
+**View:** representa la estructura de los request y los response
+
 **Service:** tiene la lógica de negocio para obtener el mensaje y la ubicación del emisor del mensaje
 Model: representa las entidades del negocio
-
-![Diagrama](/ruta/a/la/imagen.jpg)
 _
 
+![Diagrama](https://github.com/marciobagnus/quasar/blob/main/docs/Diagram.png)
 
 
 
@@ -26,7 +29,8 @@ _-Tener Golang instalado para probar localmente [Link](https://golang.org/dl/) y
 Se puede clonar y ejecutar en el entorno Local o consumir los endpoints deployados a través del Cloud Heroku . Dado que es un proyecto privado, generé un token en GitHub para poder clonarlo localmente .
 
 
-a)	Entorno local
+a)	**Entorno local**
+
 Para ejecutarlo en local debemos posicionarnos en la rama develop ya que destiné la rama main para el deploy en Heroku
 
 1-	Clonar el repositorio:
@@ -46,16 +50,21 @@ go run main.go
  
 (En caso de una ventana emergente de firewall, permitir el acceso)
 
-b)	Cloud
+b)	**Cloud**
+
 Se encuentra deployado en https://thawing-earth-38148.herokuapp.com/
 
 
 ## Endpoints ⚙️
 
-•	Topsecret
+**•Topsecret**
+
 Método: POST
+
 Descripción: recibe por body un JSON con una key “satellites” que contiene los 3 satélites. Cada satélite contiene su nombre, distancia al emisor y el mensaje. Responde un JSON con el mensaje descifrado y la posición del emisor.
+
 URL: https://thawing-earth-38148.herokuapp.com/topsecret/ ó http://localhost:8080/topsecret/ 
+
 Ejemplo:
 
 ```
