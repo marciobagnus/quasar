@@ -118,18 +118,18 @@ func isEmptyArray(messages [][]string) bool {
 	for _, message := range messages {
 		for _, word := range message {
 			if word != "" {
-				return false
+				return true
 			}
 		}
 	}
-	return true
+	return false
 }
 
 func isIncompleteArray(messages [][]string, msgSize int) bool {
 	for _, message := range messages {
 		if len(message) < msgSize {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
