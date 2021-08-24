@@ -190,11 +190,11 @@ func (a splitHandler) topSecret_split(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	port := os.Getenv("PORT")
 	/*Creo un store de satelites para los topSecret_split*/
 	satellitesStore = Store.NewSatellitesStore()
 	/*Creo un handler para poder redireccionar los metodos split*/
-
-	port := os.Getenv("PORT")
 
 	handlerSplit := newSplitHandler()
 	http.HandleFunc("/topsecret_split/", handlerSplit.topSecret_split)
