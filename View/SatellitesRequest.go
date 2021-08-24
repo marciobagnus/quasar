@@ -9,8 +9,6 @@ type SatellitesRequest struct {
 	Satellites map[string][]Model.Satellite `json:"satellites,omitempty"`
 }
 
-/*hacerle gets y sets*/
-
 func (s *SatellitesRequest) SetSatellitesRequest(satellites map[string][]Model.Satellite) {
 	s.Satellites = satellites
 }

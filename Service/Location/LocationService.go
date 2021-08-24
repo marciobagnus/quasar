@@ -7,20 +7,30 @@ import (
 	"quasar/Store"
 )
 
+/*
+Obtiene la localizacion del emisor por trilateracion
+Explicacion de trilateracion
+https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration
+
+Explicacion y algoritmo en python
+https://www.101computing.net/cell-phone-trilateration-algorithm/
+
+Se podrian tratar el tema de los muy grandes libreria: https://github.com/shopspring/decimal
+*/
 func GetLocation(mapSatellites map[string][]Model.Satellite) (location Model.Location, err error) {
 
 	var satellites []Model.Satellite
 
-	/*recoro el map que tiene una sola key y adentro de esa key estan los satelites*/
+	/*Recorre el map que tiene una sola key y adentro de esa key estan los satelites*/
 	for _, v := range mapSatellites {
 		satellites = v
 	}
 
-	/*Creo el store de location desde aca porue locoy a necesitar*/
+	/*Crea el store de location*/
 	locationStore := Store.NewLocationsStore()
 
 	if len(satellites) < 3 {
-		return location, errors.New("Incorrect number of satellites.")
+		return location, errors.New("incorrect number of satellites.")
 	}
 
 	//Voy desarmando los datos de cada satelite
@@ -63,15 +73,17 @@ func GetLocation(mapSatellites map[string][]Model.Satellite) (location Model.Loc
 
 }
 
-/*queda tratar el tema de los numeros muy grandes libreria: https://github.com/shopspring/decimal*/
+/*Calcula la diferencia entre el doble de cada variable*/
 func calculateDifference(a float32, b float32) float32 {
 	return 2*a - 2*b
 }
 
+/*Hace el calculo con la diferencia de los cuadrados expandidos */
 func calculateMatrix(a float32, b float32, c float32, d float32, e float32, f float32) float32 {
 	return a*a - b*b - c*c + d*d - e*e + f*f
 }
 
+/*Calcula el punto x y en el plano*/
 func calculateAxisPoint(v1 float32, v2 float32, v3 float32, v4 float32, v5 float32, v6 float32, v7 float32, v8 float32) float32 {
 	value := (v1*v2 - v3*v4) / (v5*v6 - v7*v8)
 	valueCast := float64(value)

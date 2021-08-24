@@ -14,7 +14,7 @@ import (
 	"quasar/View"
 )
 
-/*Creo este store para los topSecret_split*/
+/*Creo este store como variable global para los topSecret_split*/
 var satellitesStore *Store.SatellitesStore
 
 func topSecret(w http.ResponseWriter, r *http.Request) {
@@ -41,12 +41,11 @@ func topSecret(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	/*Asi se peude utilizar un set de un paquete . Tengo que declarar primero una variable a un puntero de ese paquete*/
+	/*Manera de utilizar un setter de un paquete. Tengo que declarar primero una variable a un puntero de ese paquete*/
 	var satellitesReq View.SatellitesRequest
 	satellitesReq.SetSatellitesRequest(satellites)
 
 	/*Aca voy a ir a los dos metodos propuestos en el pdf*/
-
 	position, err := Location.GetLocation(satellites)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
@@ -73,17 +72,15 @@ func topSecret(w http.ResponseWriter, r *http.Request) {
 }
 
 func topSecret_splitGet(w http.ResponseWriter, r *http.Request) {
-	/*con la informacion de todos los satelites del store deberia llamar al topsecret get*/
 
 	/*En este caso, los satelites van a ser los del store*/
 	satellites := satellitesStore.GetSatellites()
 
-	/*Asi se peude utilizar un set de un paquete . Tengo que declarar primero una variable a un puntero de ese paquete*/
+	/*Manera de utilizar un setter de un paquete. Tengo que declarar primero una variable a un puntero de ese paquete*/
 	var satellitesReq View.SatellitesRequest
 	satellitesReq.SetSatellitesRequest(satellites)
 
-	/*Aca voy a ir a los dos metodos propuestos en el pdf*/
-
+	/*Voy a los dos metodos propuestos en el chaleng*/
 	position, err := Location.GetLocation(satellites)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
@@ -112,6 +109,7 @@ func topSecret_splitGet(w http.ResponseWriter, r *http.Request) {
 
 }
 func topSecret_splitPost(w http.ResponseWriter, r *http.Request) {
+
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
@@ -127,7 +125,7 @@ func topSecret_splitPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	/*recibo de a un satelite y extraigo los datos, por un lado el distanceMessage y por otro tengo q sacar el nombre del satelide de la URL*/
+	/*Recibo de a un satelite y extraigo los datos, por un lado el distanceMessage y por otro tengo q sacar el nombre del satelide de la URL*/
 	var distanceMessage View.DistanceMessageRequest
 	err = json.Unmarshal(bodyBytes, &distanceMessage)
 	if err != nil {
@@ -135,7 +133,7 @@ func topSecret_splitPost(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	/*Saco el nombre del request que viene en el path para guardarlo en el satelite luego*/
+	/*Obtengo el nombre del request que viene en el path para guardarlo en el satelite luego*/
 	name := strings.TrimPrefix(r.URL.Path, "/topsecret_split/")
 
 	satellite := Model.Satellite{
@@ -163,26 +161,7 @@ func indexRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome the my GO API of MeLi Challenge!")
 }
 
-func main() {
-	/*Creo un store de satelites para los topSecret_split*/
-	satellitesStore = Store.NewSatellitesStore()
-
-	/*creo un handler para poder redireccionar los metodos split*/
-	handlerSplit := newSplitHandler()
-	http.HandleFunc("/topsecret_split/", handlerSplit.topSecret_split)
-
-	http.HandleFunc("/", indexRoute)
-	http.HandleFunc("/topsecret/", topSecret)
-	//http.HandleFunc("/topsecret_split/", topSecret_split)
-
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		panic(err)
-	}
-}
-
 type splitHandler struct {
-	//password string
 }
 
 func newSplitHandler() *splitHandler {
@@ -204,5 +183,22 @@ func (a splitHandler) topSecret_split(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("method not allowed"))
 		return
+	}
+}
+
+func main() {
+	/*Creo un store de satelites para los topSecret_split*/
+	satellitesStore = Store.NewSatellitesStore()
+
+	/*Creo un handler para poder redireccionar los metodos split*/
+	handlerSplit := newSplitHandler()
+	http.HandleFunc("/topsecret_split/", handlerSplit.topSecret_split)
+
+	http.HandleFunc("/", indexRoute)
+	http.HandleFunc("/topsecret/", topSecret)
+
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		panic(err)
 	}
 }

@@ -27,29 +27,19 @@ var locations = map[string]Model.Location{
 	},
 }
 
-//newLocationStore crea un almacenamiento de locations
+//Crea un almacenamiento de locations
 func NewLocationsStore() *LocationsStore {
 	return &LocationsStore{
-		/*creo el store con los datos ya. */
+		/*Creo el store con los datos. */
 		store: locations,
-		//store: map[string]Model.Location{},
 	}
 
 }
 
-//SaveLocations guarda locations
-/*func (l *LocationsStore) SaveLocations(locations map[string]Model.Location) {
-
-	l.Lock()
-	l.store = locations
-	defer l.Unlock()
-}*/
-
 func (l *LocationsStore) FetchLocationBySatelliteName(name string) (location Model.Location, err error) {
 
 	l.Lock()
-
-	//Forma de buscar sacada de stackoverflow
+	//Forma de buscar extraida de stackoverflow
 	if val, ok := l.store[strings.ToUpper(name)]; ok {
 		l.Unlock()
 		return val, nil
