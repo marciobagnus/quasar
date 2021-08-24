@@ -47,12 +47,13 @@ func topSecret(w http.ResponseWriter, r *http.Request) {
 	satellitesReq.SetSatellitesRequest(satellites)
 
 	/*Aca voy a ir a los dos metodos propuestos en el pdf*/
-	position, err := Location.GetLocation(satellites)
+	message, err := Message.GetMessage(satellites)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(err.Error()))
 	}
-	message, err := Message.GetMessage(satellites)
+
+	position, err := Location.GetLocation(satellites)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(err.Error()))
