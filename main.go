@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"quasar/Model"
@@ -201,8 +202,9 @@ func main() {
 	http.HandleFunc("/", indexRoute)
 	http.HandleFunc("/topsecret/", topSecret)
 
-	err := http.ListenAndServe(":"+port, nil)
+	/*err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		panic(err)
-	}
+	}*/
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
