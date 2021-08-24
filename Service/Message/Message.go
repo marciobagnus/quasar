@@ -128,8 +128,8 @@ func isEmptyArray(messages [][]string) bool {
 func isIncompleteArray(messages [][]string, msgSize int) bool {
 	for _, message := range messages {
 		if len(message) < msgSize {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
