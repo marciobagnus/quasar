@@ -4,7 +4,6 @@ _Es un proyecto creado a partir del challenge que me propuso Mercado Libre para 
 
 ## Comenzando 🚀
 
-_
 Este diagrama muestra de manera general cómo interactúan los paquetes del proyecto.
 
 **Store:** se utiliza para guardar los datos en memoria. Los stores son inicializados con los datos de los tres satélites conocidos.
@@ -13,7 +12,7 @@ Este diagrama muestra de manera general cómo interactúan los paquetes del proy
 
 **Service:** tiene la lógica de negocio para obtener el mensaje y la ubicación del emisor del mensaje
 Model: representa las entidades del negocio
-_
+
 
 ![Diagrama](https://github.com/marciobagnus/quasar/blob/main/docs/Diagram.png)
 
@@ -21,7 +20,7 @@ _
 
 ### Pre-requisitos 📋
 
-_-Tener Golang instalado para probar localmente [Link](https://golang.org/dl/) y Postman para hacer las peticiones_
+Tener Golang instalado para probar localmente [Link](https://golang.org/dl/) y Postman para hacer las peticiones
 
 
 ### Ejecución 🔧
@@ -59,13 +58,13 @@ Se encuentra deployado en https://thawing-earth-38148.herokuapp.com/
 
 **•Topsecret**
 
-Método: POST
+-Método: POST
 
-Descripción: recibe por body un JSON con una key “satellites” que contiene los 3 satélites. Cada satélite contiene su nombre, distancia al emisor y el mensaje. Responde un JSON con el mensaje descifrado y la posición del emisor.
+-Descripción: recibe por body un JSON con una key “satellites” que contiene los 3 satélites. Cada satélite contiene su nombre, distancia al emisor y el mensaje. Responde un JSON con el mensaje descifrado y la posición del emisor.
 
-URL: https://thawing-earth-38148.herokuapp.com/topsecret/ ó http://localhost:8080/topsecret/ 
+-URL: https://thawing-earth-38148.herokuapp.com/topsecret/ ó http://localhost:8080/topsecret/ 
 
-Ejemplo:
+-Ejemplo:
 
 ```
 {
@@ -95,12 +94,18 @@ Ejemplo:
 
 ``` 
 
-•	TopSecret_Split
+**•TopSecret_Split**
+
 Este endpoint tiene dos métodos implementados:
-1-	POST
-Descripción: Recibe por body la distancia al emisor y el mensaje. Debe enviarse el nombre del satélite en la URL. Devuelve un mensaje avisando si se guardo o no el satélite.  Se encarga de guardar en el store un satélite.
-URL: https://thawing-earth-38148.herokuapp.com/topsecret_split/{nombre}  ó http://localhost:8080/topsecret_split/{nombre} 
-Ejemplo: 
+
+_1-POST_
+
+-Descripción: Recibe por body la distancia al emisor y el mensaje. Debe enviarse el nombre del satélite en la URL. Devuelve un mensaje avisando si se guardo o no el satélite.  Se encarga de guardar en el store un satélite.
+
+-URL: https://thawing-earth-38148.herokuapp.com/topsecret_split/{nombre}  ó http://localhost:8080/topsecret_split/{nombre} 
+
+-Ejemplo: 
+
 ```
 http://localhost:8080/topsecret_split/sato
 {
@@ -108,16 +113,17 @@ http://localhost:8080/topsecret_split/sato
 "message": ["este", "", "", "mensaje", ""]
 }
 ```
-2-	GET
-Descripción: devuelve el mensaje descifrado y la posición del emisor.
-URL: https://thawing-earth-38148.herokuapp.com/topsecret_split/  ó http://localhost:8080/topsecret_split/ 
+_2-GET_
+
+-Descripción: devuelve el mensaje descifrado y la posición del emisor.
+
+-URL: https://thawing-earth-38148.herokuapp.com/topsecret_split/  ó http://localhost:8080/topsecret_split/ 
 
 
 
 ## Despliegue 📦
 
-_Para deployarlo en Heroku [Pasos](https://dev.to/jessesbyers/how-to-update-a-deployed-app-on-heroku-3fde)_[]
-
+Para deployarlo en Heroku segui estos [Pasos](https://dev.to/jessesbyers/how-to-update-a-deployed-app-on-heroku-3fde)
 
 
 ## Construido con 🛠️
@@ -137,10 +143,11 @@ No llegue a implementar todo lo que hubiese querido por una cuestión de entrega
 * **Marcio Bagnus** - [marciobagnus](https://www.linkedin.com/in/marciobagnus/)
 
 
-## Experiencia
+## Experiencia👍
+
 Al través de todo el proyecto fue un impedimento no saber Goolang, pero aprendiéndolo y con el correr de los días lo fui superando. En un primer momento me concentré en investigar el modelo matemático que respondía al primer método y descubrí la trilateración, que me permitió aproximarme a la resolución. Luego con el método del mensaje intenté buscarle el mismo lado matemático, pero resulto ser mas intuitivo.  Si bien no había una fecha para entregar el proyecto, busqué un equilibrio entre entregarlo en un plazo razonable y resolverlo bien. Me gustó haberme sentido desafiado y aprender Goolang. 
 
-## Mejoras
+## Mejoras 💥
 -	Manejo de errores entre las capas mas completo
 -	Utilizar Azure para CI-CD
 -	Documentar la API con Swagger
@@ -152,6 +159,3 @@ Al través de todo el proyecto fue un impedimento no saber Goolang, pero aprendi
 
 * A mi familia y amigos que me contuvieron en estos 10 días ❤️
 * A mi amigo Lucas Cunibertti que me ayudó con otra visión sobre el algoritmo del segundo método 😊
-
-
-
