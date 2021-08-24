@@ -12,6 +12,10 @@ func GetMessage(mapSatellites map[string][]Model.Satellite) (message string, err
 		satellites = v
 	}
 
+	if len(satellites) == 0 {
+		return message, errors.New("array of satellites is empty")
+	}
+
 	arrayMessages := getArrayMessages(satellites)
 
 	//si me viene vacio
