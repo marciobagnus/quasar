@@ -22,7 +22,7 @@ func GetMessage(mapSatellites map[string][]Model.Satellite) (message string, err
 
 	//si me viene vacio
 	if isEmptyArray(arrayMessages) {
-		return message, errors.New("array of messages is empty")
+		return message, errors.New("array of messages is empty!")
 	}
 	messageSize := getMessageSize(arrayMessages)
 	/*Ahora comparo el tamaño del mensaje con el del array*/
