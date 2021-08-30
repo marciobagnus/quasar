@@ -152,7 +152,9 @@ Al través de todo el proyecto fue un impedimento no saber Goolang, pero aprendi
 -	Utilizar Azure para CI-CD
 -	Documentar la API con Swagger
 -	Crear variables de entorno
--	Testear 
+-	Crear Unit Tests
+-	Crear Interfaces 
+-	Código atómico y limpio
 
 
 ## Agradecimientos 🎁
