@@ -25,7 +25,7 @@ Tener Golang instalado para probar localmente [Link](https://golang.org/dl/) y P
 
 ### Ejecución 🔧
 
-Se puede clonar y ejecutar en el entorno Local o consumir los endpoints deployados a través del Cloud Heroku . Dado que es un proyecto privado, generé un token en GitHub para poder clonarlo localmente .
+Se puede clonar y ejecutar en el entorno Local o consumir los endpoints deployados a través del Cloud Heroku .
 
 
 a)	**Entorno local**
@@ -34,7 +34,7 @@ Para ejecutarlo en local debemos posicionarnos en la rama develop ya que destin�
 
 1-	Clonar el repositorio:
 ```
-https://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@github.com/marciobagnus/quasar.git
+https://github.com/marciobagnus/quasar.git
 ```
 
 2-	Abrir un git bash en la raíz del proyecto y posicionarse en la rama develop:
